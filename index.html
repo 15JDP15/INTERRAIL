@@ -1,0 +1,227 @@
+        <!-- HVAR 
+        Hola! Quiero que me escribas el codigo para crear una web (totalmente completada, no me importa cuando tardes en escribirlo) con diferentes secciones para un viaje de interrail. Debe tener una sección para cada ciudad: amsterdam, praga, vienna, budapest, split i hvar. En cada sección el usuario debe poder colgar fotos(que todos los usuarios que entren deben poder ver!) y los demás usuarios deben poder comentar, añadir más imagenes, etc. Todo esto se debe guardar en el firebase que te podnre al final. Intenta que sea una web diferente a lo habitual, que realmente destaque.
+
+Quiero que hagas todo esto Y MAS, completo, es lo que te digo tarda lo que quieras pero quiero que la acabes ya.
+
+Quiero que se vea muy professional y estética, lo más importante es que sea visualmente brutal y atractiva. No te compliques mucho con el funcionamiento.
+
+Hazlo mediante 3 canvas, uno de index.html, un script.js i un style.css. Tomate el tiempo que necesites. Enviame en un mensaje el html, luego te contestare, me passas el script i te vuelvo a contestar i por ultimo el style
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyA_Qa3AH8ZQB5cMxqhtmBOwr26uwh09c6E",
+  authDomain: "interra-5ad36.firebaseapp.com",
+  databaseURL: "https://interra-5ad36-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "interra-5ad36",
+  storageBucket: "interra-5ad36.firebasestorage.app",
+  messagingSenderId: "757837969336",
+  appId: "1:757837969336:web:ef4f8b27c40fb25102c14d",
+  measurementId: "G-RKFTEN6XG5"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+    -->
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+        <title>Interrail Experience</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- HERO SECTION -->
+        <header class="hero">
+            <div class="overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Interrail Experience</h1>
+                <p class="hero-subtitle">Un viaje inolvidable por Europa</p>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#amsterdam">Amsterdam</a></li>
+                        <li><a href="#praga">Praga</a></li>
+                        <li><a href="#vienna">Vienna</a></li>
+                        <li><a href="#budapest">Budapest</a></li>
+                        <li><a href="#split">Split</a></li>
+                        <li><a href="#hvar">Hvar</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+    
+        <!-- CITY SECTIONS -->
+        <!-- Template for each city section: We'll have a dynamic gallery, a form to add images and comments -->
+        <main>
+            <!-- AMSTERDAM -->
+            <section id="amsterdam" class="city-section">
+                <div class="section-header">
+                    <h2>Amsterdam</h2>
+                    <p>Fotos y recuerdos de esta maravillosa ciudad.</p>
+                </div>
+                <div class="gallery-container">
+                    <!-- Images dynamically loaded here -->
+                    <div class="gallery" data-city="amsterdam"></div>
+                </div>
+                
+                <div class="form-container">
+                    <h3>Añadir foto & comentario</h3>
+                    <form class="upload-form" data-city="amsterdam">
+                        <input type="file" accept="image/*" class="image-input" required/>
+                        <textarea class="comment-input" placeholder="Escribe un comentario..." required></textarea>
+                        <button type="submit">Subir</button>
+                    </form>
+                </div>
+                
+                <div class="comments-container" data-city="amsterdam">
+                    <h3>Comentarios</h3>
+                    <!-- Comments dynamically loaded here -->
+                    <ul class="comments-list"></ul>
+                </div>
+            </section>
+    
+            <!-- PRAGA -->
+            <section id="praga" class="city-section">
+                <div class="section-header">
+                    <h2>Praga</h2>
+                    <p>Impresiones visuales de la belleza bohemia.</p>
+                </div>
+                <div class="gallery-container">
+                    <div class="gallery" data-city="praga"></div>
+                </div>
+    
+                <div class="form-container">
+                    <h3>Añadir foto & comentario</h3>
+                    <form class="upload-form" data-city="praga">
+                        <input type="file" accept="image/*" class="image-input" required/>
+                        <textarea class="comment-input" placeholder="Escribe un comentario..." required></textarea>
+                        <button type="submit">Subir</button>
+                    </form>
+                </div>
+                
+                <div class="comments-container" data-city="praga">
+                    <h3>Comentarios</h3>
+                    <ul class="comments-list"></ul>
+                </div>
+            </section>
+    
+            <!-- VIENNA -->
+            <section id="vienna" class="city-section">
+                <div class="section-header">
+                    <h2>Vienna</h2>
+                    <p>La elegancia imperial reflejada en tus fotografías.</p>
+                </div>
+                <div class="gallery-container">
+                    <div class="gallery" data-city="vienna"></div>
+                </div>
+    
+                <div class="form-container">
+                    <h3>Añadir foto & comentario</h3>
+                    <form class="upload-form" data-city="vienna">
+                        <input type="file" accept="image/*" class="image-input" required/>
+                        <textarea class="comment-input" placeholder="Escribe un comentario..." required></textarea>
+                        <button type="submit">Subir</button>
+                    </form>
+                </div>
+                
+                <div class="comments-container" data-city="vienna">
+                    <h3>Comentarios</h3>
+                    <ul class="comments-list"></ul>
+                </div>
+            </section>
+    
+            <!-- BUDAPEST -->
+            <section id="budapest" class="city-section">
+                <div class="section-header">
+                    <h2>Budapest</h2>
+                    <p>La perla del Danubio a través de tus fotos.</p>
+                </div>
+                <div class="gallery-container">
+                    <div class="gallery" data-city="budapest"></div>
+                </div>
+    
+                <div class="form-container">
+                    <h3>Añadir foto & comentario</h3>
+                    <form class="upload-form" data-city="budapest">
+                        <input type="file" accept="image/*" class="image-input" required/>
+                        <textarea class="comment-input" placeholder="Escribe un comentario..." required></textarea>
+                        <button type="submit">Subir</button>
+                    </form>
+                </div>
+                
+                <div class="comments-container" data-city="budapest">
+                    <h3>Comentarios</h3>
+                    <ul class="comments-list"></ul>
+                </div>
+            </section>
+    
+            <!-- SPLIT -->
+            <section id="split" class="city-section">
+                <div class="section-header">
+                    <h2>Split</h2>
+                    <p>El encanto del Adriático capturado en imágenes.</p>
+                </div>
+                <div class="gallery-container">
+                    <div class="gallery" data-city="split"></div>
+                </div>
+    
+                <div class="form-container">
+                    <h3>Añadir foto & comentario</h3>
+                    <form class="upload-form" data-city="split">
+                        <input type="file" accept="image/*" class="image-input" required/>
+                        <textarea class="comment-input" placeholder="Escribe un comentario..." required></textarea>
+                        <button type="submit">Subir</button>
+                    </form>
+                </div>
+                
+                <div class="comments-container" data-city="split">
+                    <h3>Comentarios</h3>
+                    <ul class="comments-list"></ul>
+                </div>
+            </section>
+    
+            <!-- HVAR -->
+            <section id="hvar" class="city-section">
+                <div class="section-header">
+                    <h2>Hvar</h2>
+                    <p>La magia isleña desde tu punto de vista.</p>
+                </div>
+                <div class="gallery-container">
+                    <div class="gallery" data-city="hvar"></div>
+                </div>
+    
+                <div class="form-container">
+                    <h3>Añadir foto & comentario</h3>
+                    <form class="upload-form" data-city="hvar">
+                        <input type="file" accept="image/*" class="image-input" required/>
+                        <textarea class="comment-input" placeholder="Escribe un comentario..." required></textarea>
+                        <button type="submit">Subir</button>
+                    </form>
+                </div>
+                
+                <div class="comments-container" data-city="hvar">
+                    <h3>Comentarios</h3>
+                    <ul class="comments-list"></ul>
+                </div>
+            </section>
+        </main>
+    
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p>© 2024 Interrail Experience. Todos los derechos reservados.</p>
+        </footer>
+    
+        <script src="script.js"></script>
+    </body>
+    </html>
+    
